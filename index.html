@@ -28,7 +28,7 @@
             El fútbol moderno nació en Inglaterra en el siglo XIX. 
             Hoy en día es el deporte más popular del mundo, practicado en todos los continentes.
         </p>
-        <button onclick="toggleHistoria()">Mostrar/Ocultar Historia</button>
+        <button id="btnHistoria">Mostrar/Ocultar Historia</button>
     </div>
 
     <!-- Caja 3: Competiciones -->
@@ -73,32 +73,47 @@
             </tr>
         </table>
         <br>
-        <button onclick="resaltarJugadores()">Resaltar Jugadores</button>
+        <button id="btnResaltar">Resaltar Jugadores</button>
+    </div>
+
+    <!-- Juego rápido de preguntas -->
+    <div>
+        <h2>Mini Quiz de Fútbol</h2>
+        <button id="btnQuiz">Jugar</button>
     </div>
 
     <!-- Script JavaScript -->
     <script>
-        // Mensaje de bienvenida
+        // ====== VARIABLES ======
+        let titulo = document.getElementById("titulo");
+        let historia = document.getElementById("historia");
+        let btnHistoria = document.getElementById("btnHistoria");
+        let btnResaltar = document.getElementById("btnResaltar");
+        let btnQuiz = document.getElementById("btnQuiz");
+
+        // ====== EVENTOS + FUNCIONES ======
+
+        // Evento: cargar la página
         window.onload = function() {
             alert("¡Bienvenido a la página sobre el Fútbol! ⚽");
         }
 
-        // Cambiar título al hacer clic
-        document.getElementById("titulo").onclick = function() {
-            this.innerText = "⚽ Pasión por el Fútbol ⚽";
-        }
+        // Evento: cambiar título al hacer clic
+        titulo.addEventListener("click", function() {
+            titulo.innerText = "⚽ Pasión por el Fútbol ⚽";
+        });
 
-        // Mostrar/Ocultar historia
+        // Función: mostrar/ocultar historia con condicional
         function toggleHistoria() {
-            let historia = document.getElementById("historia");
-            if (historia.style.display === "none") {
+            if (historia.style.display === "none") {   // CONDICIONAL
                 historia.style.display = "block";
             } else {
                 historia.style.display = "none";
             }
         }
+        btnHistoria.addEventListener("click", toggleHistoria);
 
-        // Resaltar jugadores en la tabla
+        // Función: resaltar jugadores
         function resaltarJugadores() {
             let filas = document.querySelectorAll("#tablaJugadores tr td:first-child");
             filas.forEach(fila => {
@@ -106,8 +121,21 @@
                 fila.style.fontWeight = "bold";
             });
         }
+        btnResaltar.addEventListener("click", resaltarJugadores);
+
+        // Función: mini quiz con condicional
+        function quizFutbol() {
+            let respuesta = prompt("¿Qué país ha ganado más Copas Mundiales de la FIFA?");
+            
+            // CONDICIONALES
+            if (respuesta.toLowerCase() === "brasil") {
+                alert("✅ Correcto, Brasil tiene 5 Copas Mundiales.");
+            } else {
+                alert("❌ Incorrecto. La respuesta correcta es Brasil.");
+            }
+        }
+        btnQuiz.addEventListener("click", quizFutbol);
+
     </script>
 </body>
 </html>
-
-
