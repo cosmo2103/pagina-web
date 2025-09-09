@@ -8,7 +8,7 @@
 <body>
     <!-- Encabezado -->
     <div>
-        <h1>⚽ El Fútbol ⚽</h1>
+        <h1 id="titulo">⚽ El Fútbol ⚽</h1>
         <p>El deporte que mueve multitudes alrededor del mundo.</p>
     </div>
 
@@ -24,10 +24,11 @@
     <!-- Caja 2: Historia -->
     <div>
         <h2>Historia</h2>
-        <p>
+        <p id="historia">
             El fútbol moderno nació en Inglaterra en el siglo XIX. 
             Hoy en día es el deporte más popular del mundo, practicado en todos los continentes.
         </p>
+        <button onclick="toggleHistoria()">Mostrar/Ocultar Historia</button>
     </div>
 
     <!-- Caja 3: Competiciones -->
@@ -44,7 +45,7 @@
     <!-- Caja 4: Jugadores -->
     <div>
         <h2>Grandes Jugadores</h2>
-        <table border="1">
+        <table border="1" id="tablaJugadores">
             <tr>
                 <th>Jugador</th>
                 <th>País</th>
@@ -71,7 +72,42 @@
                 <td>2000s-Actualidad</td>
             </tr>
         </table>
+        <br>
+        <button onclick="resaltarJugadores()">Resaltar Jugadores</button>
     </div>
 
+    <!-- Script JavaScript -->
+    <script>
+        // Mensaje de bienvenida
+        window.onload = function() {
+            alert("¡Bienvenido a la página sobre el Fútbol! ⚽");
+        }
+
+        // Cambiar título al hacer clic
+        document.getElementById("titulo").onclick = function() {
+            this.innerText = "⚽ Pasión por el Fútbol ⚽";
+        }
+
+        // Mostrar/Ocultar historia
+        function toggleHistoria() {
+            let historia = document.getElementById("historia");
+            if (historia.style.display === "none") {
+                historia.style.display = "block";
+            } else {
+                historia.style.display = "none";
+            }
+        }
+
+        // Resaltar jugadores en la tabla
+        function resaltarJugadores() {
+            let filas = document.querySelectorAll("#tablaJugadores tr td:first-child");
+            filas.forEach(fila => {
+                fila.style.backgroundColor = "yellow";
+                fila.style.fontWeight = "bold";
+            });
+        }
+    </script>
 </body>
 </html>
+
+
